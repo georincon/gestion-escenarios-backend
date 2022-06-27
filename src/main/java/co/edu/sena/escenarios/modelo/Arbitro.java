@@ -1,6 +1,8 @@
 package co.edu.sena.escenarios.modelo;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "arbitro")
@@ -32,9 +34,8 @@ public class Arbitro {
     @JoinColumn(name = "fk_colegioArbitral")
     private ColegioArbitral colegioArbitral;
 
-    @ManyToOne  //(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "fk_torneo")
-    private Torneo torneo;
+    @ManyToMany(mappedBy = "arbitro")
+    private List<Torneo> torneo = new ArrayList<Torneo>();
 
     public Arbitro() {
     }
@@ -58,26 +59,6 @@ public class Arbitro {
         this.colegioArbitral = colegioArbitral;
     }
 
-    public Arbitro(String documento, String nombre, String apellidos, String genero, String celular, String deporte, Torneo torneo) {
-        this.documento = documento;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.genero = genero;
-        this.celular = celular;
-        this.deporte = deporte;
-        this.torneo = torneo;
-    }
-
-    public Arbitro(String documento, String nombre, String apellidos, String genero, String celular, String deporte, ColegioArbitral colegioArbitral, Torneo torneo) {
-        this.documento = documento;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.genero = genero;
-        this.celular = celular;
-        this.deporte = deporte;
-        this.colegioArbitral = colegioArbitral;
-        this.torneo = torneo;
-    }
 
     public Long getId() {
         return id;
@@ -143,13 +124,6 @@ public class Arbitro {
         this.colegioArbitral = colegioArbitral;
     }
 
-    public Torneo getTorneo() {
-        return torneo;
-    }
-
-    public void setTorneo(Torneo torneo) {
-        this.torneo = torneo;
-    }
 
     @Override
     public String toString() {

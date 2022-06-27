@@ -54,7 +54,6 @@ public class ArbitroControlador {
 		arbitro.setCelular(detallesArbitro.getCelular());
 		arbitro.setDeporte(detallesArbitro.getDeporte());
 		arbitro.setColegioArbitral(detallesArbitro.getColegioArbitral());
-		arbitro.setTorneo(detallesArbitro.getTorneo());
 
 		Arbitro arbitroActualizado = repositorio.save(arbitro);
 		return ResponseEntity.ok(arbitroActualizado);

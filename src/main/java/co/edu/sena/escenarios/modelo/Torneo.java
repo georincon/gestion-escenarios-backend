@@ -39,8 +39,13 @@ public class Torneo {
     )
     private List<Equipo> equipo = new ArrayList<Equipo>();
 
-    @OneToMany(mappedBy = "torneo")
-    private List<Arbitro> arbitros = new ArrayList<Arbitro>();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "torneo_arbitro",
+            joinColumns = @JoinColumn(name = "torneo_id"),
+            inverseJoinColumns = @JoinColumn(name = "arbitro_id")
+    )
+    private List<Arbitro> arbitro = new ArrayList<Arbitro>();
 
 
     @OneToMany(mappedBy = "torneo")
